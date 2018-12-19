@@ -1,0 +1,36 @@
+CREATE EXTERNAL TABLE `bdm_community_officer_relationshop_info`(
+  `community_id` bigint COMMENT '小区编号', 
+  `community_name` string COMMENT '小区名称', 
+  `community_alias` string COMMENT '小区别名', 
+  `officer_no` string COMMENT '警员警号', 
+  `officer_name` string COMMENT '警方负责人', 
+  `officer_phone` string COMMENT '警方联系方式', 
+  `officer_station` string COMMENT '警员隶属派出所', 
+  `create_time` string COMMENT '创建时间', 
+  `update_time` string COMMENT '更新时间', 
+  `create_id` string COMMENT '创建人id', 
+  `create_person` string COMMENT '创建人', 
+  `update_id` string COMMENT '更新人id', 
+  `update_person` string COMMENT '更新人', 
+  `comments` string COMMENT '备注', 
+  `community_address` string COMMENT '小区地址')
+COMMENT '警员与小区的关系表'
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t', 
+  'serialization.null.format'='') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://node1:8020/user/hive/warehouse/bdm.db/bdm_community_officer_relationshop_info'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true', 
+  'numFiles'='1', 
+  'numRows'='0', 
+  'rawDataSize'='0', 
+  'totalSize'='3851', 
+  'transient_lastDdlTime'='1543650125')

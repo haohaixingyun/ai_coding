@@ -1,0 +1,36 @@
+CREATE EXTERNAL TABLE `bdm_tap_water_information_collection`(
+  `customer_num` string COMMENT '客户编号', 
+  `customer_name` string COMMENT '客户名称', 
+  `customer_address` string COMMENT '客户地址', 
+  `book_num` string COMMENT '册号', 
+  `meter_reader_name` string COMMENT '抄表员', 
+  `recoder_date` string COMMENT '抄表日期', 
+  `current_period_water_qty` double COMMENT '本期水量', 
+  `low_insurance_reduction_water_qty` double COMMENT '低保减免', 
+  `add_reduce_water_qty` double COMMENT '加减水量', 
+  `actual_water_qty` double COMMENT '实际水量', 
+  `basic_water_fee` double COMMENT '基本水费', 
+  `total_amount` double COMMENT '总计金额', 
+  `pay_month` string COMMENT '应收月份', 
+  `water_type` string COMMENT '用水类型', 
+  `current_meter_read` string COMMENT '本次读数', 
+  `previous_meter_read` string COMMENT '上次读数', 
+  `water_meter_caliber` string COMMENT '水表口径', 
+  `waer_meter_num` string COMMENT '水表编号')
+COMMENT '宿迁正源自来水信息数据'
+PARTITIONED BY ( 
+  `dt` string)
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t', 
+  'serialization.null.format'='') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://node1:8020/user/hive/warehouse/bdm.db/bdm_tap_water_information_collection'
+TBLPROPERTIES (
+  'transient_lastDdlTime'='1543371825')

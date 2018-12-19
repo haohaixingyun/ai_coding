@@ -1,0 +1,27 @@
+CREATE EXTERNAL TABLE `adm_test.app_resident_base_info`(
+  `resident_name` string COMMENT '姓名', 
+  `resident_id_type` string COMMENT '证件类型', 
+  `resident_id` string COMMENT '证件号码', 
+  `birth_date` string COMMENT '出生日期', 
+  `resident_sex` string COMMENT '性别', 
+  `resident_type` string COMMENT '人员类别 户籍人员 / 寄住人口 /暂住人口', 
+  `house_number` string COMMENT '户号', 
+  `relat_2_landlord` string COMMENT '跟户主的关系', 
+  `census_register` string COMMENT '户籍地址', 
+  `contact_info` string COMMENT '联系方式', 
+  `habitant_address` string COMMENT '居住地址', 
+  `address_match_status` string COMMENT '地址是否匹配成功 1 是 0 否', 
+  `property_right_certificate` string COMMENT '产权证书', 
+  `criminal_info` string COMMENT '涉警犯罪记录', 
+  `company_info` string COMMENT '单位信息', 
+  `company_address` string COMMENT '单位地址', 
+  `create_time` string COMMENT '创建时间', 
+  `update_time` string COMMENT '更新时间', 
+  `data_flag` string COMMENT '指示 是系统数据新录入数据 flag   = 2 delete  flag =1 新录入  flag = 0 系统数据', 
+  `pro_coll_id` bigint COMMENT '房屋key', 
+  `officer_no` string COMMENT '警员id')
+COMMENT '人员信息表'
+row format delimited 
+  fields terminated by '\t' 
+  null defined as '' 
+;

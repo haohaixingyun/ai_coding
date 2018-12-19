@@ -1,0 +1,28 @@
+CREATE EXTERNAL TABLE `adm.app_house_water_using_info`(
+  `pro_coll_id` bigint COMMENT '房产主键', 
+  `community_name` string COMMENT '小区名称', 
+  `community_district` string COMMENT '区域', 
+  `apartment_num` string COMMENT '楼栋名称', 
+  `house_unit` string COMMENT '单元', 
+  `room_num` string COMMENT '房(室)号', 
+  `house_status` string COMMENT '房屋状态', 
+  `landlord_name` string COMMENT '房东姓名', 
+  `landlord_id` string COMMENT '房东身份证', 
+  `landlord_phone` string COMMENT '联系方式', 
+  `previous_water_consumption` double COMMENT '上次用水量', 
+  `current_water_consumption` double COMMENT '本次用水量', 
+  `avg_water_consumption` double COMMENT '平均月用水量', 
+  `month_on_month_growth` double COMMENT '环比增长', 
+  `coefficient_variation` double COMMENT '变异系数', 
+  `standard_score` double COMMENT '标准分数', 
+  `officer_no` string COMMENT '警员警号', 
+  `judge_abnormal_time` string COMMENT '判定异常时间', 
+  `house_water_status` string COMMENT '房屋用水状态0 异常  1 正常(默认)', 
+  `create_time` string COMMENT '创建时间', 
+  `update_time` string COMMENT '更新时间')
+COMMENT '用水异常判定表'
+partitioned by (dt string)
+row format delimited 
+  fields terminated by '\t' 
+  null defined as '' 
+;

@@ -1,0 +1,30 @@
+CREATE EXTERNAL TABLE `bdm_real_estate_transaction`(
+  `property_business_num` string COMMENT '业务编号', 
+  `property_name` string COMMENT '姓名', 
+  `id_number` string COMMENT '身份证号码', 
+  `property_right_certificate_number` string COMMENT '产权证号', 
+  `property_source` string COMMENT '住房来源', 
+  `property_type` string COMMENT '房屋类型', 
+  `property_area` double COMMENT '建筑面积', 
+  `property_issue_date` string COMMENT '房屋产权证发证日期', 
+  `property_address` string COMMENT '房屋地址', 
+  `property_apartment_num` string COMMENT '幢号', 
+  `property_house_num` string COMMENT '房间号')
+COMMENT '房产交易数据'
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t', 
+  'serialization.null.format'='') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://node1:8020/user/hive/warehouse/bdm.db/bdm_real_estate_transaction'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true', 
+  'numFiles'='1', 
+  'totalSize'='12503484', 
+  'transient_lastDdlTime'='1543388914')

@@ -1,0 +1,33 @@
+CREATE EXTERNAL TABLE `bdm_real_estate_registration`(
+  `commercial_housing_contract_number` string COMMENT '商品房备案合同号', 
+  `record_date` string COMMENT '备案日期', 
+  `buyer_name` string COMMENT '购房人姓名', 
+  `buyer_id` string COMMENT '购房人证件号码', 
+  `seller_company_name` string COMMENT '售房公司名称', 
+  `seller_company_id` string COMMENT '售房公司证件号码', 
+  `contract_location` string COMMENT '合同坐落', 
+  `building_area` double COMMENT '建筑面积', 
+  `sales_unit_price` double COMMENT '销售单价', 
+  `sales_total_price` double COMMENT '销售总价', 
+  `apartment_num` string COMMENT '幢号', 
+  `building_storey` string COMMENT '名义层', 
+  `house_num` string COMMENT '房间号', 
+  `house_loction` string COMMENT '房屋坐落')
+COMMENT '产权登记数据'
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\t', 
+  'serialization.format'='\t', 
+  'serialization.null.format'='') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://node1:8020/user/hive/warehouse/bdm.db/bdm_real_estate_registration'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true', 
+  'numFiles'='1', 
+  'totalSize'='14010549', 
+  'transient_lastDdlTime'='1543388807')

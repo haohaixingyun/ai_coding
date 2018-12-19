@@ -1,0 +1,17 @@
+CREATE EXTERNAL TABLE `adm_test.app_houses_infromation_query_da`(
+  `community_name` string COMMENT '小区名称', 
+  `community_district` string COMMENT '区域', 
+  `apartment_num` string COMMENT '楼栋名称', 
+  `house_unit` string COMMENT '单元', 
+  `room_num` string COMMENT '房(室)号', 
+  `house_status` string COMMENT '房屋状态', 
+  `landlord_name` string COMMENT '房东姓名', 
+  `landlord_id` string COMMENT '房东身份证', 
+  `landlord_phone` string COMMENT '联系方式', 
+  `pro_coll_id` bigint COMMENT '房屋总数据ID', 
+  `property_right_certificate_number` string COMMENT '产权证号')
+COMMENT '房屋信息查询表'
+row format delimited 
+  fields terminated by '\t' 
+  null defined as '' 
+;
