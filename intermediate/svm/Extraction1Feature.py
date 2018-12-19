@@ -5,7 +5,7 @@
 
 '''
 
-from skimage import    io,filters
+from skimage import io,filters
 import numpy as np
 def extraction1feature():
 

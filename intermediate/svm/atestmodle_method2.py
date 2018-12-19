@@ -49,8 +49,29 @@ def model():
     will s.shape tell us list object has no attribute shape
     x[:,1:] which tell us keep all rows ,but the column wills start from the 1 index ,not from index 0 ,very funny
     """
-    feature = feature_1.tolist()  #after remove the first column set it back to list not array
 
+    feature_2 =[]
+    with open('../txt/feature2.txt','r') as fp:
+        for line in fp :
+            row = []
+            num = line.strip().split('\t')[0]
+            fvs = line.strip().split('\t')[1].split(',')
+            row.append(int(num))
+            for x in range(len(fvs)):
+                row.append(int(fvs[x]))
+            feature_2.append(row)
+
+        feature_2 = np.array(feature_2)
+        feature_2 = feature_2[:,1:]
+
+        pass
+    print("feature 1 : " ,feature_1.shape[0],feature_1.shape[1])   #  1000 行  ，每行 139 个特征
+    print("feature 2 : ", feature_2.shape[0], feature_2.shape[1])  #  1000 行  ，每行 73 个特征
+    #所以两个特征可以相加 ，向量加法
+    featureall = np.c_[3*feature_1 , 2*feature_2]   # 相当于每张图片的特征增加了
+    print("featureall : ", featureall.shape[0], featureall.shape[1])
+    feature = featureall.tolist()  #after remove the first column set it back to list not array
+    print(1111,np.array(feature))
     classification_num  =13
     allclass = [10, 11, 12, 20, 22, 25, 26, 28, 30, 31, 32, 33, 34]
     indexInfo = ['京', '渝', '鄂', '0',  '2', '5', '6', '8', 'A', 'B', 'C', 'D', 'Q']
@@ -78,7 +99,7 @@ def model():
             if line[0] !='#':
                 lineattr = line.strip().split('\t')
                 if selected_sample[rwno] ==1:     # 在 sample select 里面定义了 800 个 1  200 个 0
-                    classtrain.append(int(lineattr[1]))
+                    classtrain.append(int(lineattr[1]))  # 定义数字对应的类别
                     nametrain.append(lineattr[2])
                     featuretrain.append(feature[rwno])
                 else:
