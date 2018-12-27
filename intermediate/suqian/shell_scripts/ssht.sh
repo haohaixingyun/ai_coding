@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 hive -e "
 insert overwrite table adm_test.APP_RESIDENT_BASE_INFO_test
 

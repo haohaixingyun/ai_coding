@@ -25,6 +25,7 @@ def extraction1feature():
 
             rw = md.shape[0]
             cl = md.shape[1]
+            print('rw',rw, 'cl',cl)
             C  = np.zeros(rw + cl , dtype=np.int)  # 这里是共行程了行 + 列个特征值 ，并计算这一行列上白点的个数 ，真fuck聪明
 
             for i in  range(rw):
